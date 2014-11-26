@@ -22,6 +22,10 @@ YouTube Spotlights|Allowed
 YouTube Let's Plays|Allowed
 Modification|See the [Modification](https://github.com/FrostbyteGames/Retro-Magus/blob/master/README.md#Modification) section of this document
 
+Modification to the Repository
+------------------------------
+If you want to modify the game for everyone to use please **FORK** this repo and then make any changes you want to your forked repo (you can even clone it to your computer to edit) then push and commit. Once you have done this to add it to the main game repository create a pull request and then I will check it over and maybe accept it!
+
 Modification
 ------------
 You may make modifications to the game **as long as you don't change the way the game works and** as long as you **don't redistribute the *whole* game**. You may distribute the modification or send it to us so we can make it part of the game.
