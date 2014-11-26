@@ -72,18 +72,19 @@ public class Base extends Canvas implements Runnable {
 		}
 	}
 
-	public void render() {
+	public void tick() {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void tick() {
+	public void render() {
 		// TODO Auto-generated method stub
 		BufferStrategy bs = getBufferStrategy(); // 5 14:10
 		if (bs == null) {
 			createBufferStrategy(3);
 			return;
 		}
+		screen.clear();
 		screen.render();
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
