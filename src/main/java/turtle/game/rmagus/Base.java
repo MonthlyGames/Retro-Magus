@@ -17,6 +17,7 @@ public class Base extends Canvas implements Runnable {
 	public static int SCALE = 3;
 	public int actHeight = getHeight() / 3;
 	public int actWidth = getWidth() / 3;
+	public static String TITLE = "Retro Magus | Alpha | v. 1.0";
 
 	private static final long serialVersionUID = 1L;
 	private Thread thread;
@@ -29,7 +30,7 @@ public class Base extends Canvas implements Runnable {
 	public static void main(String[] args) {
 		Base game = new Base();
 		game.frame.setResizable(true);
-		game.frame.setTitle("Retro Magus | Alpha | v. 1.0");
+		game.frame.setTitle(Base.TITLE + "  |  " + "STARTING GAME!");
 		game.frame.add(game);
 		game.frame.pack();
 		game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,19 +68,31 @@ public class Base extends Canvas implements Runnable {
 	@Override
 	public void run() {
 		long lastTime = System.nanoTime();
+		long timer = System.currentTimeMillis();
 		final double ns = 1000000000.0 / 60.0;
 		double delta = 0;
+		int frames = 0;
+		int ticks = 0;
+
 		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
 			while (delta >= 1) {
 				tick();
+				ticks++;
 				delta--;
 			}
-
-			// tick();
 			render();
+			frames++;
+
+			if (System.currentTimeMillis() - timer > 1000) {
+				timer += 1000;
+				System.out.println("TPS: " + ticks + ", FPS: " + frames);
+				frame.setTitle(TITLE + " | " + "FPS: " + frames + " | " + "TPS: " + ticks);
+				ticks = 0;
+				frames = 0;
+			}
 		}
 		stop();
 	}
