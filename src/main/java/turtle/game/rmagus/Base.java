@@ -1,19 +1,30 @@
 package turtle.game.rmagus;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
+import turtle.game.rmagus.graphics.Screen;
 
 public class Base extends Canvas implements Runnable {
 
-	public static int HEIGHT = 480;
+	public static int HEIGHT = 720;
 	public static int WIDTH = HEIGHT / 9 * 16;
 	public static int SCALE = 3;
-	
+	public int actHeight = getHeight() / 3;
+	public int actWidth = getWidth() / 3;
+
 	private static final long serialVersionUID = 1L;
 	private Thread thread;
 	private boolean running = false;
 	private JFrame frame;
+	private Screen screen;
+	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+	private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
 	public static void main(String[] args) {
 		Base game = new Base();
@@ -28,10 +39,11 @@ public class Base extends Canvas implements Runnable {
 
 	}
 
-	
 	public Base() {
 		Dimension size = new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
 		setPreferredSize(size);
+
+		screen = new Screen(WIDTH, HEIGHT);
 
 		frame = new JFrame();
 	}
@@ -55,6 +67,32 @@ public class Base extends Canvas implements Runnable {
 	@Override
 	public void run() {
 		while (running) {
+			tick();
+			render();
 		}
+	}
+
+	public void render() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void tick() {
+		// TODO Auto-generated method stub
+		BufferStrategy bs = getBufferStrategy(); // 5 14:10
+		if (bs == null) {
+			createBufferStrategy(3);
+			return;
+		}
+		screen.render();
+		for (int i = 0; i < pixels.length; i++) {
+			pixels[i] = screen.pixels[i];
+		}
+		Graphics g = bs.getDrawGraphics();
+		g.setColor(Color.RED);
+		g.fillRect(0, 0, getWidth(), getHeight());
+		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		g.dispose();
+		bs.show();
 	}
 }
