@@ -8,6 +8,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
+import turtle.game.rmagus.controls.Keyboard;
 import turtle.game.rmagus.graphics.Screen;
 
 public class Base extends Canvas implements Runnable {
@@ -23,6 +24,7 @@ public class Base extends Canvas implements Runnable {
 	private Thread thread;
 	private boolean running = false;
 	private JFrame frame;
+	private Keyboard key;
 	private Screen screen;
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
@@ -47,6 +49,9 @@ public class Base extends Canvas implements Runnable {
 		screen = new Screen(WIDTH, HEIGHT);
 
 		frame = new JFrame();
+		
+		key = new Keyboard();
+		addKeyListener(key);
 	}
 
 	public synchronized void start() {
@@ -97,8 +102,12 @@ public class Base extends Canvas implements Runnable {
 		stop();
 	}
 
+	int x = 0, y = 0;
+
 	public void tick() {
-		// TODO Auto-generated method stub
+		key.update();
+		x++;
+		y++;
 
 	}
 
