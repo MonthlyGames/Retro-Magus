@@ -21,6 +21,5 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="library" exported="" name="org.springsource.ide.eclipse.gradle.classpathcontainer" level="application" />
   </component>
 </module>

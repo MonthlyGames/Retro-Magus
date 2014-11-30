@@ -2,10 +2,20 @@ package turtle.game.rmagus.graphics;
 
 
 public class Sprite {
-    private final int SIZE;
+    public final int SIZE;
     private int x, y;
     public int[] pixels;
     private SpriteSheet sheet;
+
+    /**
+     * Sprites:
+     * When creating sprites please refer to this order:
+     * @param size
+     * @param x
+     * @param y
+     * @param sheet
+     */
+    public static Sprite grass = new Sprite(16, 0, 0, SpriteSheet.tiles);
 
     public Sprite(int size, int x, int y, SpriteSheet sheet) {
         SIZE = size;
