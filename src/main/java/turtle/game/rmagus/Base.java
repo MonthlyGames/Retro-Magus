@@ -13,11 +13,9 @@ import turtle.game.rmagus.graphics.Screen;
 
 public class Base extends Canvas implements Runnable {
 
-	public static int HEIGHT = 720;
+	public static int HEIGHT = 480;
 	public static int WIDTH = HEIGHT / 9 * 16;
 	public static int SCALE = 3;
-	public int actHeight = getHeight() / 3;
-	public int actWidth = getWidth() / 3;
 	public static String TITLE = "Retro Magus | Alpha | v. 1.0";
 
 	private static final long serialVersionUID = 1L;
@@ -78,6 +76,7 @@ public class Base extends Canvas implements Runnable {
 		double delta = 0;
 		int frames = 0;
 		int ticks = 0;
+		//requestFocus();
 
 		while (running) {
 			long now = System.nanoTime();
@@ -126,8 +125,8 @@ public class Base extends Canvas implements Runnable {
 		}
 		Graphics g = bs.getDrawGraphics();
 		g.setColor(Color.RED);
-		g.fillRect(0, 0, getWidth(), getHeight());
-		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		g.fillRect(0, 0, WIDTH, HEIGHT);
+		g.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
 		g.dispose();
 		bs.show();
 	}
